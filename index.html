@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IT Лексика — скачать приложение (Windows / Android)</title>
+<meta name="description" content="IT Лексика — офлайн-справочник ИТ-терминов: 124 термина, 10 разделов, флешкарты, тест и игра «Пары». Скачайте для Windows или Android — работает без интернета.">
+<meta property="og:title" content="IT Лексика — скачать приложение (Windows / Android)">
+<meta property="og:description" content="Офлайн-справочник ИТ-терминов: 124 термина, 10 разделов, 4 режима учёбы. EXE для Windows и APK для Android.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="64x64" href="logo-64.png">
+<style>
+  :root{
+    --bg:#000C01; --card:#0E1613; --card2:#111A16; --fg:#EBF2EF; --muted:#8D9C96;
+    --primary:#24C187; --primary2:#64E3AB; --prim-fg:#001201; --line:rgba(255,255,255,.1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--fg);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:ui-monospace,"Cascadia Code","JetBrains Mono",Consolas,"Liberation Mono",monospace}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .ic{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+
+  /* фон: свечение */
+  .glow{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+  .glow::before{content:"";position:absolute;top:-190px;left:50%;transform:translateX(-50%);width:820px;height:460px;border-radius:50%;background:rgba(36,193,135,.09);filter:blur(90px)}
+  .glow::after{content:"";position:absolute;right:-160px;top:33%;width:360px;height:360px;border-radius:50%;background:rgba(100,227,171,.06);filter:blur(90px)}
+
+  /* шапка */
+  header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line);background:rgba(0,12,1,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  .hbar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand img{width:36px;height:36px;border-radius:12px}
+  .brand b{font-family:ui-monospace,"Cascadia Code",Consolas,monospace;font-size:15px;font-weight:700;letter-spacing:-.2px;display:block;line-height:1.2}
+  .brand b span{color:var(--primary)}
+  .brand small{display:none;color:var(--muted);font-size:11px;line-height:1.2}
+  @media(min-width:640px){.brand small{display:block}}
+  nav.top{display:none;gap:4px}
+  @media(min-width:768px){nav.top{display:flex}}
+  nav.top a{padding:8px 14px;border-radius:999px;font-size:14px;font-weight:500;color:var(--muted);transition:color .15s}
+  nav.top a:hover{color:var(--fg)}
+  .btn-cta{display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:var(--prim-fg);padding:9px 18px;border-radius:999px;font-size:14px;font-weight:600;transition:background .15s}
+  .btn-cta:hover{background:var(--primary2)}
+  .btn-cta .ic{width:16px;height:16px}
+
+  /* hero */
+  .hero{display:grid;gap:44px;padding:64px 0 72px;align-items:center}
+  @media(min-width:1024px){.hero{grid-template-columns:1.02fr .98fr;padding-top:84px}}
+  .badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(36,193,135,.3);background:rgba(36,193,135,.1);color:var(--primary2);padding:7px 14px;border-radius:999px;font-size:12px;font-weight:500}
+  .badge .ic{width:14px;height:14px}
+  h1{font-family:ui-monospace,"Cascadia Code",Consolas,monospace;font-size:44px;font-weight:700;letter-spacing:-1px;line-height:1.15;margin-top:20px}
+  @media(min-width:640px){h1{font-size:56px}}
+  h1 span{color:var(--primary)}
+  .hero p.lead{margin-top:16px;max-width:560px;color:var(--muted);font-size:17px}
+  .dl-row{margin-top:32px;display:flex;flex-direction:column;gap:12px}
+  @media(min-width:640px){.dl-row{flex-direction:row}}
+  .btn-dl{display:flex;align-items:center;gap:14px;padding:15px 22px;border-radius:18px;transition:.15s}
+  .btn-dl .ic{width:24px;height:24px}
+  .btn-dl b{display:block;font-size:15px;font-weight:700;line-height:1.3}
+  .btn-dl small{display:block;font-size:12px;line-height:1.4;opacity:.72}
+  .btn-win{background:var(--primary);color:var(--prim-fg);box-shadow:0 12px 40px -12px rgba(36,193,135,.6)}
+  .btn-win:hover{background:var(--primary2)}
+  .btn-and{border:1px solid rgba(255,255,255,.12);background:var(--card)}
+  .btn-and:hover{border-color:rgba(36,193,135,.4);background:var(--card2)}
+  .btn-and .ic{color:var(--primary)}
+  .btn-and small{color:var(--muted);opacity:1}
+  .checks{margin-top:24px;display:flex;flex-wrap:wrap;gap:8px 22px;list-style:none;font-size:13px;color:var(--muted)}
+  .checks li::before{content:"✓ ";color:var(--primary);font-weight:700}
+
+  .shot-frame{position:relative}
+  .shot-frame::before{content:"";position:absolute;inset:-24px;border-radius:32px;background:rgba(36,193,135,.07);filter:blur(40px);z-index:-1}
+  .window{overflow:hidden;border-radius:18px;border:1px solid rgba(255,255,255,.1);background:var(--card);box-shadow:0 24px 80px -24px rgba(36,193,135,.35)}
+  .win-bar{display:flex;align-items:center;gap:8px;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--card2)}
+  .dot{width:10px;height:10px;border-radius:50%}
+  .win-bar .url{margin-left:12px;background:rgba(0,0,0,.4);color:var(--muted);font-family:ui-monospace,Consolas,monospace;font-size:11px;padding:2px 10px;border-radius:6px}
+
+  /* статистика */
+  .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(14,22,19,.6)}
+  .stats .wrap{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding:26px 24px;text-align:center}
+  @media(min-width:768px){.stats .wrap{grid-template-columns:repeat(4,1fr)}}
+  .stats b{display:block;font-family:ui-monospace,Consolas,monospace;font-size:26px;font-weight:700;color:var(--primary)}
+  .stats span{font-size:12px;color:var(--muted)}
+
+  /* секции */
+  section.blk{padding:72px 0}
+  section.tint{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(14,22,19,.4)}
+  h2{font-size:28px;font-weight:700;letter-spacing:-.4px}
+  @media(min-width:640px){h2{font-size:32px}}
+  .sub{margin-top:8px;color:var(--muted);max-width:640px}
+  .grid3{margin-top:36px;display:grid;gap:16px}
+  @media(min-width:640px){.grid3{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1024px){.grid3{grid-template-columns:repeat(3,1fr)}}
+  .card{border:1px solid var(--line);border-radius:18px;background:var(--card);padding:24px;transition:border-color .15s}
+  .card:hover{border-color:rgba(36,193,135,.35)}
+  .card .ic{color:var(--primary);background:rgba(36,193,135,.12);padding:10px;border-radius:12px;box-shadow:0 0 0 1px rgba(36,193,135,.25);width:42px;height:42px}
+  .card h3{margin-top:16px;font-size:16px;font-weight:600}
+  .card p{margin-top:6px;font-size:14px;color:var(--muted)}
+
+  /* скриншоты */
+  .shots{margin-top:36px;display:grid;gap:16px}
+  @media(min-width:768px){.shots{grid-template-columns:repeat(3,1fr)}}
+  figure.shot{margin:0;overflow:hidden;border-radius:18px;border:1px solid var(--line);background:var(--card)}
+  figure.shot figcaption{padding:12px 16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+
+  /* download cards */
+  .dl-grid{margin-top:36px;display:grid;gap:16px}
+  @media(min-width:768px){.dl-grid{grid-template-columns:repeat(2,1fr)}}
+  .dl-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;background:var(--card);padding:26px}
+  .dl-head{display:flex;align-items:center;gap:14px}
+  .dl-head .ic{color:var(--primary);background:rgba(36,193,135,.12);padding:12px;border-radius:14px;box-shadow:0 0 0 1px rgba(36,193,135,.25);width:50px;height:50px}
+  .dl-head h3{font-size:17px;font-weight:600}
+  .dl-head p{font-size:12px;color:var(--muted)}
+  .dl-card ol{margin-top:20px;flex:1;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted)}
+  .dl-card ol li{display:flex;gap:10px}
+  .dl-card ol .n{font-family:ui-monospace,Consolas,monospace;font-weight:700;color:var(--primary)}
+  .dl-btn{margin-top:24px;display:flex;align-items:center;justify-content:center;gap:10px;padding:13px 20px;border-radius:14px;font-size:14px;font-weight:700;transition:.15s}
+  .dl-btn .ic{width:18px;height:18px}
+  .dl-btn.green{background:var(--primary);color:var(--prim-fg)}
+  .dl-btn.green:hover{background:var(--primary2)}
+  .dl-btn.soft{border:1px solid rgba(36,193,135,.4);background:rgba(36,193,135,.1);color:var(--primary2)}
+  .dl-btn.soft:hover{background:rgba(36,193,135,.2)}
+  details.hashes{margin-top:16px;border:1px solid var(--line);border-radius:18px;background:var(--card);padding:14px 20px;font-size:14px;color:var(--muted)}
+  details.hashes summary{cursor:pointer;font-weight:600;color:var(--fg)}
+  details.hashes code{display:block;margin-top:12px;font-family:ui-monospace,Consolas,monospace;font-size:11.5px;word-break:break-all;line-height:1.7}
+
+  /* партнёр */
+  .partner{display:flex;flex-direction:column;align-items:flex-start;gap:24px;border:1px solid rgba(36,193,135,.25);border-radius:18px;background:linear-gradient(135deg,#0E1613,#00120A);padding:32px}
+  @media(min-width:640px){.partner{flex-direction:row;align-items:center;justify-content:space-between}}
+  .partner .tag{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--primary)}
+  .partner h3{margin-top:8px;font-size:20px;font-weight:700}
+  .partner p{margin-top:6px;font-size:14px;color:var(--muted);max-width:560px}
+  .btn-out{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(36,193,135,.4);background:rgba(36,193,135,.1);color:var(--primary2);padding:13px 20px;border-radius:14px;font-size:14px;font-weight:700;white-space:nowrap;transition:.15s}
+  .btn-out:hover{background:rgba(36,193,135,.2)}
+  .btn-out .ic{width:16px;height:16px}
+
+  /* подвал */
+  footer{border-top:1px solid var(--line);padding:24px 0;margin-top:auto}
+  footer .wrap{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:12px;color:var(--muted);text-align:center}
+  @media(min-width:768px){footer .wrap{flex-direction:row;justify-content:space-between;text-align:left}}
+  footer .mono{font-weight:600;color:rgba(235,242,239,.85)}
+  footer a.plink{color:var(--primary);font-weight:500}
+  footer a.plink:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="glow" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap hbar">
+    <a class="brand" href="#top">
+      <img src="logo.png" alt="Логотип IT Лексика" width="36" height="36">
+      <span>
+        <b class="mono">IT<span> Лексика</span></b>
+        <small>справочник · разработка и управление ПО</small>
+      </span>
+    </a>
+    <nav class="top" aria-label="Разделы сайта">
+      <a href="#features">Возможности</a>
+      <a href="#shots">Скриншоты</a>
+      <a href="#download">Скачать</a>
+      <a href="#partner">Партнёр</a>
+    </nav>
+    <a class="btn-cta" href="#download">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
+      Скачать
+    </a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="wrap hero">
+    <div>
+      <span class="badge">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        Офлайн-справочник · без интернета и рекламы
+      </span>
+      <h1>IT<span> Лексика</span></h1>
+      <p class="lead">Справочник профессиональной лексики и терминологии: разработка и управление
+        программным обеспечением. 124 термина в 10 разделах, четыре режима учёбы.
+        Скачайте один файл — и работайте без интернета на компьютере или телефоне.</p>
+
+      <div class="dl-row">
+        <a class="btn-dl btn-win" href="IT-Leksika-Windows.exe" download="IT Лексика.exe">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+          <span><b>Скачать для Windows</b><small>EXE · ~7,5 МБ · Windows 10/11</small></span>
+        </a>
+        <a class="btn-dl btn-and" href="IT-Leksika-Android.apk" download="IT Лексика.apk">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+          <span><b>Скачать для Android</b><small>APK · ~734 КБ · Android 7.0+</small></span>
+        </a>
+      </div>
+
+      <ul class="checks">
+        <li>Без интернета</li>
+        <li>Без рекламы</li>
+        <li>Бесплатно</li>
+        <li>Прогресс хранится на устройстве</li>
+      </ul>
+    </div>
+
+    <div class="shot-frame">
+      <div class="window">
+        <div class="win-bar">
+          <span class="dot" style="background:rgba(255,95,87,.8)"></span>
+          <span class="dot" style="background:rgba(254,188,46,.8)"></span>
+          <span class="dot" style="background:rgba(40,200,64,.8)"></span>
+          <span class="url">localhost/it-lexika</span>
+        </div>
+        <img src="shot-home.png" alt="Главный экран приложения IT Лексика" width="1440" height="900">
+      </div>
+    </div>
+  </section>
+
+  <!-- СТАТИСТИКА -->
+  <div class="stats">
+    <div class="wrap">
+      <div><b>124</b><span>термина</span></div>
+      <div><b>10</b><span>разделов</span></div>
+      <div><b>4</b><span>режима учёбы</span></div>
+      <div><b>100%</b><span>офлайн</span></div>
+    </div>
+  </div>
+
+  <!-- ВОЗМОЖНОСТИ -->
+  <section id="features" class="blk wrap">
+    <h2>Возможности</h2>
+    <p class="sub">Четыре режима учёбы и полноценный справочник — всё в одном приложении.</p>
+    <div class="grid3">
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <h3>Справочник</h3>
+        <p>124 термина с определениями и поиском. Фильтры по 10 разделам — от системного ПО до Scrum и профессионального жаргона.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+        <h3>Флешкарты</h3>
+        <p>Переворачивайте карточки, отмечайте выученное и настраивайте наборы: направление перевода, раздел и количество.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg>
+        <h3>Тест</h3>
+        <p>Проверяйте знания в режиме викторины: варианты ответов, подсчёт очков и личный рекорд.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 11h4"/><path d="M8 9v4"/><path d="M15 12h.01"/><path d="M18 10h.01"/><path d="M17.32 5H6.68a4 4 0 0 0-3.98 3.59C2.6 9.42 2 14.46 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.41-1.41A2 2 0 0 1 9.83 16h4.34a2 2 0 0 1 1.42.59L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.55-.6-6.58-.69-7.26A4 4 0 0 0 17.32 5z"/></svg>
+        <h3>Игра «Пары»</h3>
+        <p>Запоминание в игровой форме: открывайте карточки и находите пары «термин ↔ значение» за минимум ходов.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>
+        <h3>Прогресс и избранное</h3>
+        <p>Изученные термины, звёздочка «в избранное» и статистика сохраняются прямо на устройстве.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m2 2 20 20"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M5 12.5a10 10 0 0 1 4-2.4"/><path d="M15 10.1a10 10 0 0 1 4 2.4"/><path d="M12 20h.01"/></svg>
+        <h3>Полностью офлайн</h3>
+        <p>Интернет не нужен: все материалы уже вшиты в приложение и никуда не отправляются.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- СКРИНШОТЫ -->
+  <section id="shots" class="blk tint">
+    <div class="wrap">
+      <h2>Скриншоты</h2>
+      <p class="sub">Тёмная тема, крупная типографика и ничего лишнего — как в редакторе кода.</p>
+      <div class="shots">
+        <figure class="shot">
+          <img src="shot-glossary.png" alt="Справочник терминов IT Лексика" loading="lazy">
+          <figcaption>Справочник — поиск и фильтры по разделам</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="shot-cards.png" alt="Флешкарты IT Лексика" loading="lazy">
+          <figcaption>Флешкарты — настройте набор и учитесь</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="shot-pairs.png" alt="Игра «Пары» IT Лексика" loading="lazy">
+          <figcaption>Игра «Пары» — запоминание в игровой форме</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- СКАЧАТЬ -->
+  <section id="download" class="blk wrap">
+    <h2>Скачать приложение</h2>
+    <p class="sub">Один самодостаточный файл: интерфейс, все 124 термина и иконка вшиты внутрь.
+      Установка не требуется.</p>
+
+    <div class="dl-grid">
+      <div class="dl-card">
+        <div class="dl-head">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+          <div>
+            <h3>IT Лексика для Windows</h3>
+            <p>Windows 10 / 11 · 64-бит · ~7,5 МБ</p>
+          </div>
+        </div>
+        <ol>
+          <li><span class="n">1.</span>Скачайте EXE-файл и запустите его двойным кликом.</li>
+          <li><span class="n">2.</span>Если SmartScreen предупредит: «Подробнее» → «Выполнить в любом случае».</li>
+          <li><span class="n">3.</span>Приложение откроется в браузере по локальному адресу — окно запуска не закрывайте.</li>
+        </ol>
+        <a class="dl-btn green" href="IT-Leksika-Windows.exe" download="IT Лексика.exe">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
+          Скачать для Windows · EXE
+        </a>
+      </div>
+
+      <div class="dl-card">
+        <div class="dl-head">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+          <div>
+            <h3>IT Лексика для Android</h3>
+            <p>Android 7.0 и новее · ~734 КБ</p>
+          </div>
+        </div>
+        <ol>
+          <li><span class="n">1.</span>Скачайте APK на телефон и откройте его.</li>
+          <li><span class="n">2.</span>Разрешите установку для браузера; на вопрос Play Protect — «Всё равно установить».</li>
+          <li><span class="n">3.</span>Приложение «IT Лексика» появится в меню с фирменной иконкой — работает офлайн.</li>
+        </ol>
+        <a class="dl-btn soft" href="IT-Leksika-Android.apk" download="IT Лексика.apk">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
+          Скачать для Android · APK
+        </a>
+      </div>
+    </div>
+
+    <details class="hashes">
+      <summary>Контрольные суммы SHA-256</summary>
+      <code>IT Лексика.exe: 2f41efc047bad891b6c18a6b14275bee86736614ac0603b4c17a1f5783a7ffab</code>
+      <code>IT Лексика.apk: a065e997c74df73f0af27c05ff70a7825656efa5dc7cd7c1d220ff05b3751ecd</code>
+    </details>
+  </section>
+
+  <!-- ПАРТНЁР -->
+  <section id="partner" class="blk tint">
+    <div class="wrap">
+      <div class="partner">
+        <div>
+          <p class="tag">Партнёр проекта</p>
+          <h3>NeYARO — ИТ-Лексикон</h3>
+          <p>Словарь-справочник IT-терминологии от партнёра проекта. Ссылка на NeYARO есть
+            и в самом приложении — на главной странице и в подвале.</p>
+        </div>
+        <a class="btn-out" href="https://ne-yaro.github.io/it-lexicon/" target="_blank" rel="noopener noreferrer">
+          Открыть сайт партнёра
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><span class="mono">IT Лексика</span> — справочник профессиональной лексики и терминологии</span>
+    <span>Партнёр: <a class="plink" href="https://ne-yaro.github.io/it-lexicon/" target="_blank" rel="noopener noreferrer">NeYARO · ИТ-Лексикон</a></span>
+    <span>© 2026 IT Лексика</span>
+  </div>
+</footer>
+</body>
+</html>
